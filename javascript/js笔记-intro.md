@@ -1,10 +1,9 @@
-
----
 title: 概述
+date: 20171201 15:20:00
+category: JavaScript
 layout: page
-category: introduction
-date: 20171201
 modify: 20171201
+
 ---
 
 ## 内容简介

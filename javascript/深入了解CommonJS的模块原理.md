@@ -1,9 +1,9 @@
 title: 深入了解CommonJS的模块实现原理.md
 date: 2017-11-08 12:00:00
+category: JavaScript
 tags:
 - CommonJS
-categories:
-- Node.js
+
 ---
 
 js是一种函数式编程语言，它支持闭包。我们把js代码用一个函数包装起来，这段代码的所有全局变量就会变成了函数内部的局部变量。

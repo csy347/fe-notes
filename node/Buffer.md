@@ -1,10 +1,8 @@
-
 title: Buffer
 date: 2018-03-20 15:00:00
+categories: Node
 tags:
 - buffer
-categories:
-- Node
 
 ---
 

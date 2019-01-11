@@ -1,7 +1,7 @@
 title: 安装nodeJS
 date: 2017-03-07 16:38
-categories:
-- nodeJS
+categories: Node
+
 ---
 
 Node.js 是一个基于 Chrome V8 引擎的 JavaScript 运行环境，使得Javascript也具备了写“服务器端”的能力。支持多用户的高并发是其优势之一，它的出现能够让前端工程师更好的理解后端服务器运作原理，搭建一个功能全面的web应用。学习nodejs对于了解http、tcp协议是很好的。

@@ -1,7 +1,11 @@
 title: ES6中新增加的数组方法
 data: 2018-03-21 16:00:00
-tags: forEach map reduce
 category: ES6
+tags: 
+- forEach 
+- map 
+- reduce
+
 ---
 
 **ES6中新增加了**

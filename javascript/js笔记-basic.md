@@ -1,10 +1,8 @@
-
----
 title: 基本语法  
-layout: page  
-category: grammar  
-date: 20171201  
+date: 20171201 15:00:00 
+category: JavaScript  
 modify: 20171201  
+layout: page  
 
 ---
 

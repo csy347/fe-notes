@@ -1,7 +1,8 @@
 title: Promise.md
 date: 2018-05-29 16:25:00
-tags: Promise
 categories: Node
+tags: Promise
+
 ---
 
 ## 1.

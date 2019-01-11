@@ -1,10 +1,10 @@
 title: ECMAScript 6简介.md
 date: 2017-11-08 11:00:33
+category: ES6
 tags:
 - 阮一峰
 - 前端
-categories:
-- ES6
+
 ---
 
 # ECMAScript 6简介

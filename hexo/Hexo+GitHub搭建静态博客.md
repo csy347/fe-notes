@@ -1,5 +1,7 @@
 title: Hexo+GitHub搭建静态博客
 date: 2017-06-01 15:45:30
+category: Hexo
+
 ---
 
 
@@ -167,4 +169,5 @@ hexo现在支持更加简单的命令格式了，比如：
 
 
 简书: [HEXO+Github,搭建属于自己的博客][c-link] - 潘柏信
+
 [c-link]: (http://www.jianshu.com/p/465830080ea9)

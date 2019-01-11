@@ -1,10 +1,10 @@
 title: nrm使用简介.md
 date: 2017-11-01 17:00:33
+categories: Node
 tags:
 - npm
 - 后端
-categories:
-- Nodejs
+
 ---
 
 ### nrm是管理npm源切换的利器。

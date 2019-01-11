@@ -1,5 +1,6 @@
 title: sublime text3 插件安装卸载.md
 date: 2018-05-21 16:25:00
+category: Sublime
 
 ---
 

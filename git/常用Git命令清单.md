@@ -1,7 +1,7 @@
 title: 常用Git命令清单 - 阮一峰
 date: 2017-02-25 16:27:27
-categories:
-- Git
+category: Git
+
 ---
 
 ![](http://www.ruanyifeng.com/blogimg/asset/2015/bg2015120901.png)

@@ -1,6 +1,6 @@
 title: JS数据类型
 date: 2018-03-22 14:00:00
-categories: JavaScript
+category: JavaScript
 ---
 ## JS数据类型
 

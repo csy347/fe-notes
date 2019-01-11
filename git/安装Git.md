@@ -1,7 +1,7 @@
 title: 安装Git
 date: 2017-01-07 16:38
-categories:
-- nodeJS
+category: Git
+
 ---
 
 ## 工具/原料

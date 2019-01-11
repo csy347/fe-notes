@@ -1,7 +1,10 @@
 title: Node进程
 data: 2018-04-25 12:00:00
-tags: process, child_process
 category: Node
+tags: 
+- process
+- child_process
+
 ---
 
 我们都知道 Node.js 是以单线程的模式运行的，但它使用的事件驱动来处理并发，这样有助于我们在多核 CPU 的系统上创建多个子进程，从而提高性能。

@@ -1,5 +1,7 @@
 title: Hexo主题Yilia
 date: 2017-07-22 20:21:20
+category: Hexo
+
 ---
 
 ## 使用
@@ -66,4 +68,5 @@ git pull
 **************
 摘抄来源:
 [Hexo主题Yilia][litten-link] - Litten
+
 [litten-link]: (http://litten.github.io/2014/08/31/hexo-theme-yilia/)

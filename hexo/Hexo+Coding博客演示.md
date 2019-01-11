@@ -1,6 +1,9 @@
 title: Hexo+Coding博客演示
 date: 2017-06-01 15:45:30
+category: Hexo
+
 ---
+
 ## 一 什么是Hexo
 首先Hexo是一款基于Node.js的静态博客, 它是由台湾的一位大学生写出来的, 支持很多主题和Markdown, 很炫酷并且很好用.
 

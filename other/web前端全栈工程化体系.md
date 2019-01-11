@@ -1,9 +1,9 @@
 title: web前端全栈工程化体系.md
 date: 2018-03-04 12:00:00
+category: Other
 tags:
 - tag
-categories:
-- folder
+
 ---
 
 * 课程时长:  237时0分11秒
