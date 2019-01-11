@@ -4,8 +4,8 @@
 
 ##### Git 全局设置:
 ``` bash
-git config --global user.name "c_sy"
-git config --global user.email "chen_shuying@126.com"
+git config --global user.name "csy347_macbook"
+git config --global user.email "csy347@gmail.com"
 ```
 
 ##### 创建 git 仓库:
