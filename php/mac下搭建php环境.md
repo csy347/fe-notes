@@ -85,9 +85,11 @@ ServerName www.example.com:80
 # Require not ip 192.168.1.2 禁止192.168.1.2的主机访问，其它都可以
 DocumentRoot "/Library/WebServer/Documents"
 <Directory "/Library/WebServer/Documents">
-    Options FollowSymLinks Multiviews
+    # Options FollowSymLinks Multiviews
+    Options Indexes FollowSymLinks Multiviews # 开启目录浏览
     MultiviewsMatch Any
-    AllowOverride None
+    # AllowOverride None
+    AllowOverride All
     Require all granted
 </Directory>
 

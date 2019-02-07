@@ -1,71 +1,5 @@
 # Ajax
 
-- XHR
-- 封装 XHR
-  - 回调函数
-  - 兼容性问题
-- jQuery 的快捷方法
-- axios
-- 跨域
-  - JSONP
-  - CORS
-- XHR 2.0
-  - FormData
-  - 文件上传
-- 客户端模板引擎
-
-
-
-案例
-
-- 增删改查
-
-
-
-
-## 学习目标
-
-- Ajax
-  - 能够概述什么是Ajax
-  - 能够理解传统模式交互和Ajax模式交互的异同
-
-- 原生 XHR
-  - 能够掌握使用原生 XHR 发起 GET 请求
-  - 能够掌握使用原生 XHR 发起 POST 请求
-  - 能够理解 GET 请求与 POST 请求的区别
-  - 能够理解同步请求和异步请求的差异
-  - 能够理解什么是 GET 缓存
-  - 能够掌握让 GET 缓存失效的解决方法
-- JSON
-  - 能够理解并概述什么是 JSON
-  - 能够掌握将 JSON 格式字符串转换为 JavaScript 对象
-  - 能够掌握将 JavaScript 对象转换为 JSON 格式字符串
-- 客户端模板引擎
-  - 能够理解模板引擎的本质作用
-  - 能够理解模板引擎的实现原理
-  - 能够掌握使用模板引擎将请求响应数据渲染到页面中
-- 封装 Ajax
-  - 能够掌握 GET 请求方法的封装
-  - 能够掌握 POST 请求方法的封装
-  - 能够掌握 GET+POST 请求方法的封装
-  - 能够理解在异步操作中回调函数的意义
-
-- jQuery 中的 Ajax
-  - 能够掌握 $.ajax 的使用
-  - 能够掌握 $.get 的使用
-  - 能够掌握 $.post 的使用
-- XHR 2.0
-  - 能够掌握 FormData 对象的使用
-  - 能够掌握使用 XHR 2.0 异步上传文件
-  - 能够掌握使用 XHR 2.0 实现文件上传进度条
-- 跨域
-  - 能够理解什么是 Ajax 跨域
-  - 能够理解什么是同源策略
-  - 能够掌握使用 CORS 的方式进行跨域操作
-  - 能够掌握使用 JSONP 的方式进行跨域操作
-  - 能够理解 JSONP 跨域操作原理
-  - 能够掌握 jQuery 中的 ajax 通过 JSONP 进行跨域操作
-
 ## 概述
 
 > Web 程序最初的目的就是将信息（数据）放到公共的服务器，让所有网络用户都可以通过浏览器访问。
@@ -176,23 +110,23 @@ xhr.onreadystatechange = funciton() {
 ``` js
 xhr.onreadystatechange = function() {
     switch(this.readyState) {
-        case 2: 
+        case 2:
         	// 开始下载
         	// 拿到整个报文头
         	console.log(this.getAllResponseHeaders().split('\n'));
-            
+
         	// 拿到报文头里子项server
         	console.log(this.getResponseHeader('server'));
-        	
+
         	// 还没拿到报文体
         	console.log(this.responseText);
-        	
+
         	break
-        case 3: 
+        case 3:
         	// 下载中
         	console.log(this.responseText);
         	break
-        case 4: 
+        case 4:
         	// 下载完成
         	console.log(this.responseText);
         	break
@@ -303,9 +237,9 @@ xhr.onreadystatechange = function(){
 
 关于同步与异步的概念的生活中很多常见的场景，举例说明。
 
-> 同步：一个人在同一个时刻只能做一件事情，在执行一些耗时的操作（不需要看管）不去做别的事，只是等待
+> 同步：一个人在同一个时刻只能做一件事情，在执行一些耗时的操作不去做别的事，只是等待
 >
-> 异步：在执行一些耗时的操作（不需要看管）去做别的事，而不是等待
+> 异步：在执行一些耗时的操作的同时去做别的事，而不是等待
 
 `xhr.open()` 方法第三个参数要求传入的是一个 `bool` 值，其作用就是设置此次请求是否采用异步方式执行，默认是 `true`，如果需要同步执行可以通过传递`false`实现：
 
@@ -322,12 +256,18 @@ xhr.onreadystatechange = function(){
     }
 }
 console.log('after ajax');
+
+/* 
+before ajax
+after ajax
+request done
+*/
 ```
 
 如果采用同步方式执行，则代码会卡死在`xhr.send()`这一步：
 
 ``` js
-console.log('before ajax'):
+console.log('before ajax');
 var xhr = new XMLHttpRequest();
 // 同步方式
 xhr.open('GET', './time.php', false);
@@ -352,6 +292,23 @@ console.log('after ajax');
 
 至此，我们已经大致了解了 ajax 的基本 API。
 
+### XMLHttpRequest API 总结
+
+#### 属性
+
+- `readyState`
+- `status`
+- `responseText`
+- `responseXML`
+- `onreadystatechange`
+
+#### 方法
+
+- `open(methon, url, async)`
+- `send(requestBody)`
+- `setRequestHeader(key, value)`
+- `getResponseHeader(key)`
+
 ### 响应数据格式
 
 > 提问：如果希望服务端返回一个复杂数据，该如何处理？
@@ -362,6 +319,14 @@ console.log('after ajax');
 
 一种数据描述手段
 
+``` js
+if(this.readyState !== 4) return;
+// this.responseXML 专门用来获取服务端返回的XML数据，操作方式就是通过DOM的方式操作
+// 但是需要服务端响应头中的 Content-Type 必须是 application/xml
+console.log(this.responseXML.documentElement.children[0].innerHTML);
+console.log(this.responseXML.documentElement.getElementsByTagName('name')));
+```
+
 老掉牙的东西，简单演示一下，不在这里浪费时间，基本现在的项目不用了。
 
 淘汰的原因：数据冗余太多
@@ -370,17 +335,81 @@ console.log('after ajax');
 
 也是一种数据描述手段，类似于 js 字面量方式
 
+
+
 服务端采用 JSON 格式返回数据，客户端按照 JSON 格式解析数据
 
-> 不管是 JSON 也好，还是 XML，只是在 AJAX 请求过程中用到，并不代表它们之间有必然的联系，它们只是数据协议罢了
+> **注意**
+>
+> - 不管是 JSON 也好，还是 XML，只是在 AJAX 请求过程中用到，并不代表它们之间有必然的联系，它们只是数据协议罢了
+> - 不管服务端是采用 XML 还是采用 JSON 本质上都是将数据返回给客户端
+> - 服务端应该根据响应内容的格式设置一个合理的 Content-Type
+
+### 留言板案例
+
+1. 页面结构
+2. 数据接口
+3. AJAX 实现
 
 ### 处理响应数据渲染
 
+客户端中拿到请求的数据之后最常见的就是把这些数据呈现到页面上。
+
+如果数据结构简单，可以直接通过字符串操作(拼接)的方式处理，但是如果数据过于复杂，字符串拼接维护成本太大，就不推荐了
+
 > 模板引擎：
-> 
+>
 > - artTemplate: https://aui/github.io/art-template/
 
 模板引擎实际上就是一个 API，模板引擎有很多种，使用方式大同小异，目的为了可以更容易的将数据渲染到HTML中
+
+### 缓存问题
+
+``` js
+var xhr = new XMLHttpRequest()
+xhr.open('GET', '/time')
+xhr.send(null)
+xhr.onreadystatechange = function () {
+    if (this.readyState !== 4) return
+    console.log(this.responseText)
+    // => 每次得到的结果都是相同的
+}
+```
+
+#### 解决方案
+
+##### URL 加戳
+
+这个办法的核心就是让浏览器认为每次请求的地址都不同
+
+> 不同的 querystring 会被浏览器认为是不同的地址，浏览器会忽略客户端缓存
+
+``` js
+var xhr = new XMLHttpRequest()
+xhr.open('GET', '/time?t=' + Date.now())
+xhr.send(null)
+xhr.onreadystatechange = function () {
+    if (this.readyState !== 4) return
+    console.log(this.responseText)
+    // =>
+}
+`
+```
+
+##### *服务端设置响应头
+
+由于服务端 通过 HTTP 响应报文中的响应头会告知客户端浏览器不要缓存当前地址
+
+``` js
+app.get('/time', (req, res) => {
+    res.set('Cache-Control', 'no-cache')
+    res.set('Pragma', 'no-cache')
+    res.set('Expires', '-1')
+    res.send(Date.now().toString())
+})
+```
+
+了解即可，更多的情况下前端开发中还是通过加戳的方式解决此问题，因为在前端可控范围之内
 
 ### 兼容方案
 
@@ -396,6 +425,18 @@ var xhr = XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject('Microsoft.X
 
 ### JQuery.ajax
 
+#### $.ajax
+
+#### $.get
+
+#### $.post
+
+#### 全局事件处理
+
+#### 自学内容(作业)
+
+### Axios
+
 ## 跨域
 
 ### 相关概念
@@ -404,17 +445,67 @@ var xhr = XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject('Microsoft.X
 
 #### JSONP
 
+##### jQuery 中对 JSONP 的支持
+
 #### CORS
 
-## XHR 2.0
+## XMLHttpRequest 2.0
 
 > 暂作了解，无需着重看待
 
 ### onload / onprogress
 
+### response 属性
+
 ### FormData
+
+### 案例
 
 ## 参考链接
 
 - http://www.w3school.com.cn/ajax/index.asp
 - https://aui.github.io/art-template/zh-cn
+
+## 学习目标
+
+- Ajax
+  - 能够概述什么是Ajax
+  - 能够理解传统模式交互和Ajax模式交互的异同
+
+- 原生 XHR
+  - 能够掌握使用原生 XHR 发起 GET 请求
+  - 能够掌握使用原生 XHR 发起 POST 请求
+  - 能够理解 GET 请求与 POST 请求的区别
+  - 能够理解同步请求和异步请求的差异
+  - 能够理解什么是 GET 缓存
+  - 能够掌握让 GET 缓存失效的解决方法
+- JSON
+  - 能够理解并概述什么是 JSON
+  - 能够掌握将 JSON 格式字符串转换为 JavaScript 对象
+  - 能够掌握将 JavaScript 对象转换为 JSON 格式字符串
+- 客户端模板引擎
+  - 能够理解模板引擎的本质作用
+  - 能够理解模板引擎的实现原理
+  - 能够掌握使用模板引擎将请求响应数据渲染到页面中
+- 封装 Ajax
+  - 能够掌握 GET 请求方法的封装
+  - 能够掌握 POST 请求方法的封装
+  - 能够掌握 GET+POST 请求方法的封装
+  - 能够理解在异步操作中回调函数的意义
+
+- jQuery 中的 Ajax
+  - 能够掌握 $.ajax 的使用
+  - 能够掌握 $.get 的使用
+  - 能够掌握 $.post 的使用
+- XHR 2.0
+  - 能够掌握 FormData 对象的使用
+  - 能够掌握使用 XHR 2.0 异步上传文件
+  - 能够掌握使用 XHR 2.0 实现文件上传进度条
+- 跨域
+  - 能够理解什么是 Ajax 跨域
+  - 能够理解什么是同源策略
+  - 能够掌握使用 CORS 的方式进行跨域操作
+  - 能够掌握使用 JSONP 的方式进行跨域操作
+  - 能够理解 JSONP 跨域操作原理
+  - 能够掌握 jQuery 中的 ajax 通过 JSONP 进行跨域操作
+
