@@ -1,4 +1,3 @@
-# Ajax
 
 ## 概述
 
@@ -145,12 +144,18 @@ xhr.addEventListener('readystatechange', function(){
 });
 ```
 
-html5： xhr.onload 相当于 xhr.onreadystatechange 为4 的时候
+XMLHttpRequest 2.0新增内容：onload / on progress
+
+html5： xhr.onload 相当于 xhr.onreadystatechange 为4 的时候 
+
+HTML5 中对 XMLHttpRequest 类型全面升级，更易用，更强大
+
 ``` js
 const xhr = new XMLHttpRequest();
 xhr.open('GET', './time.php');
+xhr.onload = ()=>{}
+xhr.onprogress = ()=>{}
 xhr.send(null);
-xhr.onload = () => {}
 ```
 
 ### 遵循 HTTP
@@ -177,7 +182,7 @@ xhr.onreadystatechange = function () {
         console.log(this.statusText)
         // 获取响应头信息
         console.log(this.getResponseHeader('Content-Type')) // 指定响应头
-        console.log(this.getAllResponseHeader()) // 全部响应头
+        console.log(this.getAllResponseHeaders()) // 全部响应头
         // 获取响应体
         console.log(this.responseText) // 文本形式
         console.log(this.responseXML) // XML 形式，了解即可不用了
@@ -309,6 +314,25 @@ console.log('after ajax');
 - `setRequestHeader(key, value)`
 - `getResponseHeader(key)`
 
+**response跟responseText的区别**
+
+例如：
+``` js
+var xhr = new XMLHttpRequest();
+xhr.open('GET', './test.php');
+xhr.send();
+// 我们通过代码告诉请求代理对象，服务端响应给我们的是JSON
+xhr.responseType = 'json';
+xhr.onreadystatechange = function(){
+    if(this.readyState !== 4) return;
+    console.log(this)
+    // this.response 获取到的结果会根据 this.responseType 的变化而变化
+    // this.responseText 永远获取的是字符串形式的响应体
+}
+```
+
+> 参考: https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/responseType
+
 ### 响应数据格式
 
 > 提问：如果希望服务端返回一个复杂数据，该如何处理？
@@ -423,29 +447,238 @@ var xhr = XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject('Microsoft.X
 
 ### AJAX 请求封装
 
-### JQuery.ajax
+> 函数就可以理解为一个想要做的事情，函数体中约定了这件事情做的过程，直到调用时才开始工作。
+
+```javascript
+/**
+ * 发送一个 AJAX 请求
+ * @param  {String}   method 请求方法
+ * @param  {String}   url    请求地址
+ * @param  {Object}   params 请求参数
+ * @param  {Function} done   请求完成过后需要做的事情（委托/回调）
+ */
+function ajax (method, url, params, done) {
+    // 统一转换为大写便于后续判断
+    method = method.toUpperCase()
+
+    // 对象形式的参数转换为 urlencoded 格式
+    var pairs = []
+    for (var key in params) {
+    	pairs.push(key + '=' + params[key])
+    }
+    var querystring = pairs.join('&')
+
+    var xhr = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP')
+
+    xhr.addEventListener('readystatechange', function () {
+    	if (this.readyState !== 4) return
+
+    	// 尝试通过 JSON 格式解析响应体
+    	try {
+     	 	done(JSON.parse(this.responseText))
+    	} catch (e) {
+      		done(this.responseText)
+    	}
+    })
+
+    // 如果是 GET 请求就设置 URL 地址 问号参数
+    if (method === 'GET') {
+    	url += '?' + querystring
+    }
+
+    xhr.open(method, url)
+
+    // 如果是 POST 请求就设置请求体
+    var data = null
+    if (method === 'POST') {
+    	xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+    	data = querystring
+    }
+    xhr.send(data)
+}
+
+// 调用
+ajax('get', '/getsomthing', { id: 123 }, function (data) {
+    console.log(data)
+})
+
+ajax('post', '/addsomthing', { foo: 'posted data' }, function (data) {
+    console.log(data)
+})
+```
+
+> **委托**：将函数作为参数传递就像是将一个事情交给别人，这就是委托的概念
+
+### jQuery.ajax
+
+jQuery 中有一套专门针对 AJAX 的封装，功能十分完善，经常使用，需要着重注意。
+
+> 一个你会用我会用他会用到的点，就一定有一个已经封装好的
+
+> 参考：
+> - http://www.jquery123.com/category/ajax/
+> - http://www.w3school.com.cn/jquery/jquery_ref_ajax.asp
 
 #### $.ajax
 
+``` js
+$.ajax({
+    url: '/time',
+    type: 'get',
+    dataType: 'json',
+    data: { id: 1 },
+    beforeSend: function (xhr) {
+        console.log('before send')
+    },
+    success: function (res) {
+        console.log(res)
+    },
+    error: function (xhr) {
+        console.log(xhr)
+    },
+    complete: function (xhr) {
+        console.log('request completed')
+    }
+})
+```
+
+常用选项参数介绍：
+
+- url：请求地址
+- type：请求方法，默认为 `get`
+- dataType：服务端响应数据类型
+- contentType：请求体内容类型，默认 `application/x-www-form-urlencoded`
+- data：需要传递到服务端的数据，如果 GET 则通过 URL 传递，如果 POST 则通过请求体传递
+- timeout：请求超时时间
+- beforeSend：请求发起之前触发
+- success：请求成功之后触发（响应状态码 200）
+- error：请求失败触发
+- complete：请求完成触发（不管成功与否）
+
+
 #### $.get
+
+GET 请求快捷方法
+
+`$.get(url, data, callback)`
 
 #### $.post
 
+POST 请求快捷方法
+
+`$.post(url, data, callback)`
+
 #### 全局事件处理
 
-#### 自学内容(作业)
+> http://www.jquery123.com/category/ajax/global-ajax-event-handlers/
+
+#### 自学内容（作业）
+
+- `$(selector).load()`
+- `$.getJSON()`
+- `$.getScript()`
+
+简单概括以上方法的作用和基本用法。
+
+> 附：顶部进度条 NProgress 显示加载进度 https://ricostacruz.com/nprogress
 
 ### Axios
+
+Axios 是目前应用最为广泛的 AJAX 封装库，相对于 jQuery 的优势在于功能能强劲，职责更单一，后期专门有介绍。
+
+``` javascript
+axios.get('/time')
+  .then(function (res) {
+    console.log(res.data)
+  })
+  .catch(function (err) {
+    console.error(err)
+  })
+```
+
+> *扩展： https://github.com/axios/axios
 
 ## 跨域
 
 ### 相关概念
 
+同源策略是浏览器的一种安全策略，所谓同源是指**域名**，**协议**，**端口**完全相同，只有同源的地址才可以相互通过 AJAX 的方式请求。
+
+同源或者不同源说的是两个地址之间的关系，不同源地址之间请求我们称之为**跨域请求**
+
+什么是同源？例如：http://www.example.com/detail.html 与一下地址对比
+
+| 对比地址                                   | 是否同源 | 原因      |
+| ---------------------------------------- | ------ | ------- |
+| https://www.example.com/detail.html      | 不同源  | 协议不同    |
+| http://api.example.com/detail.html       | 不同源  | 域名不同    |
+| http://www.example.com:8080/detail.html  | 不同源  | 端口不同    |
+| http://api.example.com:8080/detail.html  | 不同源  | 域名、端口不同 |
+| https://api.example.com/detail.html      | 不同源  | 协议、域名不同 |
+| https://www.example.com:8080/detail.html | 不同源  | 端口、协议不同 |
+| http://www.example.com/other.html        | 同源    | 只是目录不同  |
+
 ### 解决方案
+
+现代化的 Web 应用中肯定会有不同源的现象，所以必然要解决这个问题，从而实现跨域请求。
+
+> 参考：http://rickgray.me/solutions-to-cross-domain-in-browser
 
 #### JSONP
 
+**JSON** with **P**adding，是一种借助于 `script` 标签发送跨域请求的技巧。
+
+其原理就是在客户端借助 `script` 标签请求服务端的一个地址，服务端的这个地址返回一段带有调用某个全局函数调用的 JavaScript 脚本（而非一段 HTML），将原本需要返回给客户端的数据通过参数传递给这个函数，函数中就可以得到原本服务端想要返回的数据。
+
+以后绝大多数情况都是采用 JSONP 的手段完成不同源地址之间的跨域请求
+
+客户端 http://www.zce.me/users-list.html
+
+```html
+<script src="http://api.zce.me/users?callback=foo"></script>
+```
+
+服务端 http://api.zce.me/users?callback=foo 返回的结果
+
+```javascript
+foo(['我', '是', '你', '原', '本', '需', '要', '直', '接', '返', '回', '的', '数', '据'])
+```
+
+**总结一下**：由于 XMLHttpRequest 无法发送不同源地址之间的跨域请求，所以我们必须要另寻他法，script 这种方案就是我们最终选择的方式，我们把这种方式称之为 JSONP，如果你不了解原理，先记住怎么用，多用一段时间再来看原理。
+
+问题：
+
+1. JSONP 需要服务端配合，服务端按照客户端的要求返回一段 JavaScript 调用客户端的函数
+2. 只能发送 GET 请求
+
+> 注意：JSONP 用的是 script 标签，更 AJAX 提供的 XMLHttpRequest 没有任何关系！！！
+
 ##### jQuery 中对 JSONP 的支持
+
+jQuery 中使用 JSONP 就是将 dataType 设置为 jsonp
+
+```javascript
+$.ajax({
+  url: 'https://douban.uieee.com/v2/movie/coming_soon',
+  type: 'get',
+  dataType: 'jsonp',
+  data: { id: 1 },
+  beforeSend: function (xhr) {
+    console.log('before send')
+  },
+  success: function (data) {
+    console.log(data)
+  },
+  error: function (xhr) {
+    console.log(xhr)
+  },
+  complete: function (xhr) {
+    console.log('request completed')
+  }
+})
+```
+
+> Axios 由于设计原因不支持 JSONP
 
 #### CORS
 
@@ -455,11 +688,85 @@ var xhr = XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject('Microsoft.X
 
 ### onload / onprogress
 
+HTML5 中对 XMLHttpRequest 类型全面升级，更易用，更强大
+
+### onload / onprogress
+
+```javascript
+var xhr = new XMLHttpRequest()
+xhr.open('GET', '/time')
+xhr.onload = function () {
+  // onload readyState => 4
+  // 只在请求完成时触发
+  console.log(this.readyState)
+}
+xhr.onprogress = function (e) {
+  // onprogress readyState => 3
+  // 只在请求进行中触发
+  console.log(this.readyState)
+  // e.loaded  在周期性调用中接受到了多少信息。
+  // e.total  该请求一共有多少信息。
+}
+xhr.send(null)
+```
+
+> - https://developer.mozilla.org/zh-CN/docs/Web/API/XMLHttpRequestEventTarget/onload
+> - https://developer.mozilla.org/zh-CN/docs/Web/API/XMLHttpRequestEventTarget/onprogress
+
 ### response 属性
+
+以对象的形式表述响应体，其类型取决于 `responseType` 的值。你可以尝试设置 `responseType` 的值，以便通过特定的类型请求数据。
+
+```javascript
+var xhr = new XMLHttpRequest()
+xhr.open('GET', '/api/users')
+// 主观认为服务端返回的响应体为 JSON 格式
+xhr.responseType = 'json'
+xhr.onload = function () {
+  console.log(this.response)
+  // => Array 而不是 JSON String
+}
+xhr.send(null)
+```
+
+> `responseType` 要在调用 `open()` 初始化请求之后，在调用 `send()` 发送请求到服务器之前设置方可生效。
+
+| 值 | 描述 |
+| --- | --- |
+| "" | 将 responseType 设为空字符串与设置为"text"相同， 是默认类型 （实际上是 DOMString）。|
+| "arraybuffer" | response 是一个包含二进制数据的 JavaScript ArrayBuffer 。|
+| "blob" | response 是一个包含二进制数据的 Blob 对象 。|
+| "document" | response 是一个 HTML Document 或 XML XMLDocument ，这取决于接收到的数据的 MIME 类型。请参阅 HTML in XMLHttpRequest 以了解使用 XHR 获取 HTML 内容的更多信息。|
+| "json" | response 是一个 JavaScript 对象。这个对象是通过将接收到的数据类型视为 JSON 解析得到的。|
+| "text" | response 是包含在 DOMString 对象中的文本。|
 
 ### FormData
 
+以前 AJAX 操作只能提交字符串，现在可以提交 **二进制** 的数据。
+
+```javascript
+var formElement = document.querySelector('form#login')
+
+// 表单数据对象
+var data = new FormData(formElement)
+// 额外文本内容
+data.append('key', 'value')
+// 额外文件内容
+data.append('file', dom.files[0])
+
+var xhr = new XMLHttpRequest()
+xhr.open('POST', '/api/users')
+xhr.send(data)
+xhr.onload = function () {
+  console.log(this.responseText)
+}
+```
+
+> https://developer.mozilla.org/zh-CN/docs/Web/API/FormData
+
 ### 案例
+
+异步上传文件
 
 ## 参考链接
 
