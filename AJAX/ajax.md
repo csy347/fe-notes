@@ -588,12 +588,12 @@ Axios 是目前应用最为广泛的 AJAX 封装库，相对于 jQuery 的优势
 
 ``` javascript
 axios.get('/time')
-  .then(function (res) {
-    console.log(res.data)
-  })
-  .catch(function (err) {
-    console.error(err)
-  })
+	.then(function (res) {
+    	console.log(res.data)
+	})
+	.catch(function (err) {
+		console.error(err)
+	})
 ```
 
 > *扩展： https://github.com/axios/axios
@@ -651,7 +651,7 @@ foo(['我', '是', '你', '原', '本', '需', '要', '直', '接', '返', '回'
 1. JSONP 需要服务端配合，服务端按照客户端的要求返回一段 JavaScript 调用客户端的函数
 2. 只能发送 GET 请求
 
-> 注意：JSONP 用的是 script 标签，更 AJAX 提供的 XMLHttpRequest 没有任何关系！！！
+> 注意：JSONP 用的是 script 标签，跟 AJAX 提供的 XMLHttpRequest 没有任何关系！！！
 
 ##### jQuery 中对 JSONP 的支持
 
@@ -659,22 +659,22 @@ jQuery 中使用 JSONP 就是将 dataType 设置为 jsonp
 
 ```javascript
 $.ajax({
-  url: 'https://douban.uieee.com/v2/movie/coming_soon',
-  type: 'get',
-  dataType: 'jsonp',
-  data: { id: 1 },
-  beforeSend: function (xhr) {
-    console.log('before send')
-  },
-  success: function (data) {
-    console.log(data)
-  },
-  error: function (xhr) {
-    console.log(xhr)
-  },
-  complete: function (xhr) {
-    console.log('request completed')
-  }
+	url: 'https://douban.uieee.com/v2/movie/coming_soon',
+	type: 'get',
+	dataType: 'jsonp',
+	data: { id: 1 },
+	beforeSend: function (xhr) {
+		console.log('before send')
+	},
+	success: function (data) {
+		console.log(data)
+	},
+	error: function (xhr) {
+		console.log(xhr)
+	},
+	complete: function (xhr) {
+		console.log('request completed')
+	}
 })
 ```
 
@@ -682,11 +682,25 @@ $.ajax({
 
 #### CORS
 
+Cross Origin Resource Share，跨域资源共享
+
+```javascript
+app.get('/time', (req, res) => {
+	// // 允许任意源访问，不安全
+	// res.set('Access-Control-Allow-Origin', '*')
+	// 允许指定源访问
+	res.set('Access-Control-Allow-Origin', 'http://zce.me')
+	res.send(Date.now().toString())
+})
+```
+
+这种方案无需客户端作出任何变化（客户端不用改代码），只是在被请求的服务端响应的时候添加一个 `Access-Control-Allow-Origin` 的响应头，表示这个资源是否允许指定域请求。
+
+> https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Access_control_CORS
+
 ## XMLHttpRequest 2.0
 
 > 暂作了解，无需着重看待
-
-### onload / onprogress
 
 HTML5 中对 XMLHttpRequest 类型全面升级，更易用，更强大
 
@@ -696,16 +710,16 @@ HTML5 中对 XMLHttpRequest 类型全面升级，更易用，更强大
 var xhr = new XMLHttpRequest()
 xhr.open('GET', '/time')
 xhr.onload = function () {
-  // onload readyState => 4
-  // 只在请求完成时触发
-  console.log(this.readyState)
+	// onload readyState => 4
+	// 只在请求完成时触发
+	console.log(this.readyState)
 }
 xhr.onprogress = function (e) {
-  // onprogress readyState => 3
-  // 只在请求进行中触发
-  console.log(this.readyState)
-  // e.loaded  在周期性调用中接受到了多少信息。
-  // e.total  该请求一共有多少信息。
+	// onprogress readyState => 3
+	// 只在请求进行中触发
+	console.log(this.readyState)
+	// e.loaded  在周期性调用中接受到了多少信息。
+	// e.total  该请求一共有多少信息。
 }
 xhr.send(null)
 ```
@@ -723,8 +737,8 @@ xhr.open('GET', '/api/users')
 // 主观认为服务端返回的响应体为 JSON 格式
 xhr.responseType = 'json'
 xhr.onload = function () {
-  console.log(this.response)
-  // => Array 而不是 JSON String
+	console.log(this.response)
+	// => Array 而不是 JSON String
 }
 xhr.send(null)
 ```
@@ -758,7 +772,7 @@ var xhr = new XMLHttpRequest()
 xhr.open('POST', '/api/users')
 xhr.send(data)
 xhr.onload = function () {
-  console.log(this.responseText)
+	console.log(this.responseText)
 }
 ```
 
