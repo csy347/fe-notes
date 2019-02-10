@@ -630,6 +630,38 @@ axios.get('/time')
 
 其原理就是在客户端借助 `script` 标签请求服务端的一个地址，服务端的这个地址返回一段带有调用某个全局函数调用的 JavaScript 脚本（而非一段 HTML），将原本需要返回给客户端的数据通过参数传递给这个函数，函数中就可以得到原本服务端想要返回的数据。
 
+``` js
+function jsonp (url, params, callback) {
+    var funcName = 'jsonp_' + Date.now() + Math.random().toString().substr(2, 5);
+
+    if(typeof params === 'object') {
+        var tempArr = [];
+        for(var key in params) {
+            var value = params[key];
+            tempArr.push(key + '=' + value);
+        }
+        params = tempArr.join('&');
+    }
+
+    var script = document.createElement('script');
+    script.src = url + '?' + params + '&callback=' + funcName;
+    document.body.appendChild(script);
+
+    window[funcName] = function(data) {
+        callback(data);
+
+        delete window[funcName];
+        document.body.removeChild(script);
+    }
+}
+```
+
+``` js
+jsonp('http://localhost/jsonp/server.php', {id: 123}, function(res) {
+    console.log(res);
+});
+```
+
 以后绝大多数情况都是采用 JSONP 的手段完成不同源地址之间的跨域请求
 
 客户端 http://www.zce.me/users-list.html
