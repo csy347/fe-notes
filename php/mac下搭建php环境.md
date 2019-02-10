@@ -1,3 +1,14 @@
+``` shell
+sudo httpd -v # 检查配置文件是否正确
+sudo apachectl start # 启动 apache 服务
+sudo apachectl stop # 关闭 appache 服务
+sudo apachectl restart # 重启 apache 服务
+```
+
+``` shell
+mysql -u root -pe # 启动 mysql 服务
+exit # 退出命令
+```
 
 mac内置了PHP的apache环境以及php开发语言；唯独缺少mysql数据库。
 
@@ -188,7 +199,7 @@ We've installed your MySQL database without a root password. To secure it run:
 MySQL is configured to only allow connections from localhost by default
 
 To connect run:
-    mysql -uroot
+    mysql -u root
 
 To have launchd start mysql now and restart at login:
 # 如果你要数据库在开机的时候就启动呢，就执行下面的语句；
