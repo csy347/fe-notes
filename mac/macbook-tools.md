@@ -57,6 +57,7 @@ brew cask install aliwangwang    #阿里旺旺
 
 - 印象笔记 (beta版，有markdown)
 - FileZilla
+- Photoshop
 
 
 ## nvm 常用指令
@@ -64,14 +65,14 @@ brew cask install aliwangwang    #阿里旺旺
 > https://github.com/creationix/nvm
 
 ``` shell
-nvm version         // 查看nvm版本
-nvm install 4.6.2   // 安装node4.6.2版本（附带安装npm）
-nvm uninstall 4.6.2 // 卸载node4.6.2版本
-nvm list            // 查看node版本
-nvm use 4.6.2       // 将node版本切换到4.6.2版本
-nvm root　　　　     // 查看nvm安装路径 
-nvm install --lts   //下载最新的稳定版本
-nvm install stable  //下载最新的版本
+nvm version         # 查看nvm版本
+nvm install 4.6.2   # 安装node4.6.2版本（附带安装npm）
+nvm uninstall 4.6.2 # 卸载node4.6.2版本
+nvm list            # 查看node版本
+nvm use 4.6.2       # 将node版本切换到4.6.2版本
+nvm root　　　　     # 查看nvm安装路径 
+nvm install --lts   #下载最新的稳定版本
+nvm install stable  #下载最新的版本
 ```
 
 **注意**
