@@ -48,9 +48,14 @@ brew cask install dropbox        #文件同步软件
 brew cask install baidunetdisk   #百度网盘
 brew cask install thunder        #迅雷
 brew cask install sketch         #UI设计软件
-brew cask install kela           #Mac上的7-Zip
+brew cask install keka           #Mac上的7-Zip
 brew cask install launchrocket   #管理软件后台服务
 brew cask install aliwangwang    #阿里旺旺
+brew cask install unpkg          #卸载可执行文件(二进制安装包)
+```
+
+``` shell
+brew install unpkg
 ```
 
 ## 第三方安装
@@ -65,7 +70,7 @@ brew cask install aliwangwang    #阿里旺旺
 > https://github.com/creationix/nvm
 
 ``` shell
-nvm version         # 查看nvm版本
+nvm --version       # 查看nvm版本
 nvm install 4.6.2   # 安装node4.6.2版本（附带安装npm）
 nvm uninstall 4.6.2 # 卸载node4.6.2版本
 nvm list            # 查看node版本
