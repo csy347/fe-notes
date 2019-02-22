@@ -12,7 +12,37 @@ npm install -g supervisor
 npm install -g npm
 npm install -g nrm      # 管理npm源的工具
 npm install -g cross-env # 设置环境变量
+npm install -g eslint   # 代码规范和语法错误检查工具
 ```
+
+### 项目安装
+``` shell
+npm i config-lite # 读取配置文件（将配置与代码分离）
+npm i ejs
+npm i express
+npm i mongoose
+npm i mongolass
+npm i express-formidable
+npm i express-session
+npm i express-winston
+npm i marked
+npm i moment
+npm i sha1
+npm i winston
+npm i objectid-to-timestamp
+
+npm i cross-env
+npm i eslint
+npm i eslint-config-airbnb
+npm i eslint-plugin-import
+npm i eslint-plugin-jsx-a11y
+npm i eslint-plugin-react
+npm i istanbul
+npm i mocha
+npm i supertest
+```
+
+---------------------------------------------
 
 ### npm 全局依赖 切换
 
