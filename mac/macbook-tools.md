@@ -3,7 +3,7 @@
 - 打开terminal
 - 查看所有可以使用的 shell `cat /etc/shells`
 - 查看当前使用的 shell `echo $SHELL`
-- 切换 zsh `chsh -s /bin/zsh` 
+- 切换 zsh `chsh -s /bin/zsh`
 - 重启terminal 再次查看当前使用的 shell，确定切换是否成功
 
 
@@ -52,10 +52,8 @@ brew cask install keka           #Mac上的7-Zip
 brew cask install launchrocket   #管理软件后台服务
 brew cask install aliwangwang    #阿里旺旺
 brew cask install unpkg          #卸载可执行文件(二进制安装包)
-```
-
-``` shell
-brew install unpkg
+brew cask install typora         #markdown可视化工具
+brew cask install robo-3t        #robomongo，MongoDB可视化工具
 ```
 
 ## 第三方安装
@@ -74,11 +72,22 @@ nvm --version       # 查看nvm版本
 nvm install 4.6.2   # 安装node4.6.2版本（附带安装npm）
 nvm uninstall 4.6.2 # 卸载node4.6.2版本
 nvm list            # 查看node版本
-nvm use 4.6.2       # 将node版本切换到4.6.2版本
-nvm root　　　　     # 查看nvm安装路径 
+nvm use 4.6.2       # 将node版本切换到4.6.2版本(临时)
+nvm alias default 8.9.1       # 将node版本设置为默认
+nvm root　　　　     # 查看nvm安装路径
 nvm install --lts   #下载最新的稳定版本
 nvm install stable  #下载最新的版本
 ```
+
+``` shell
+nvm --help                            Show this message
+nvm reinstall-packages <version>      Reinstall global `npm` packages contained in <version> to current version
+```
+
+**注意**
+
+如果每个项目要用到不同版本的 node，那么就在你的项目目录下用 .nvmrc 设置缺省的 nvm use 版本号，然后在 package.json 的各个 script 入口代码加上 nvm use 即可。这项执行 start/test 等脚本前就会先 use 一下。这是分项目的用法。
+
 
 **注意**
 
