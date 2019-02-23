@@ -34,26 +34,14 @@ https://github.com/robbyrussell/oh-my-zsh
 - 1password
 - 有道翻译
 - xcode
+- day one (日记本)
 
 ## brew cask 安装常用工具
 
 ``` shell
 brew cask install iterm2         #安装iTerm 2
 brew cask install google-chrome  #安装Chrome
-brew cask install evernote       #云笔记软件
-brew cask install sublime-text   #文本编辑器
-brew cask install visual-studio-code #微软出品的文本编辑器
-brew cask install virtualbox     #虚拟机，可以装个Windows
-brew cask install dropbox        #文件同步软件
-brew cask install baidunetdisk   #百度网盘
-brew cask install thunder        #迅雷
-brew cask install sketch         #UI设计软件
-brew cask install keka           #Mac上的7-Zip
-brew cask install launchrocket   #管理软件后台服务
-brew cask install aliwangwang    #阿里旺旺
-brew cask install unpkg          #卸载可执行文件(二进制安装包)
-brew cask install typora         #markdown可视化工具
-brew cask install robo-3t        #robomongo，MongoDB可视化工具
+... # 更多工具见 /homebrew/常用工具.md
 ```
 
 ## 第三方安装
@@ -106,4 +94,3 @@ export NVM_DIR="$HOME/.nvm"
 - 如果还没有解决文件，强制执行一遍 `source ~/.bash_profile`
 
 > 注意：如果你安装了 oh my zsh ，需要在 .zshrc 文件去添加以上配置信息，（一般安装成功都会自动写入这个文件最底部）
-
