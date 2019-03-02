@@ -1,14 +1,4 @@
-``` shell
-sudo httpd -v # 检查配置文件是否正确
-sudo apachectl start # 启动 apache 服务
-sudo apachectl stop # 关闭 appache 服务
-sudo apachectl restart # 重启 apache 服务
-```
-
-``` shell
-mysql -u root -pe # 启动 mysql 服务
-exit # 退出命令
-```
+## mac 中配置 apache 环境
 
 mac内置了PHP的apache环境以及php开发语言；唯独缺少mysql数据库。
 
@@ -25,12 +15,40 @@ php -v
 PHP 7.1.19 (cli) (built: Aug 17 2018 20:10:18) ( NTS )
 Copyright (c) 1997-2018 The PHP Group
 Zend Engine v3.1.0, Copyright (c) 1998-2018 Zend Technologies
+
+mysql --version
+mysql  Ver 8.0.13 for osx10.14 on x86_64 (Homebrew)
 ```
+
+``` shell
+sudo httpd -v # 检查配置文件是否正确
+sudo apachectl start # 启动 apache 服务
+sudo apachectl stop # 关闭 appache 服务
+sudo apachectl restart # 重启 apache 服务
+```
+
+``` shell
+mysql.server start # 启动mysql服务
+mysql.server stop
+mysql -u root -p # 测试登录 mysql 服务, 显示版本号证明成功
+exit # 退出命令
+```
+
+
+
+## PHP
+
+> mac自带php
+
+
+## Apache
+
+> mac自带php
 
 apache下httpd.conf配置文件
 
 httpd.conf文件所在的位置\etc\apache2目录下
-``` shell 
+``` shell
 # 你的apache软件安装的位置。其它指定的目录如果没有指定绝对路径，则目录是相对于该目录，mac原装的apache可以不用改；
 ServerRoot "/usr"
 
@@ -94,8 +112,10 @@ ServerName www.example.com:80
 # Require all denied拒绝所有访问
 # Require ip 192.168.1.0/24 仅允许192.168.1.0/24网络的主机访问
 # Require not ip 192.168.1.2 禁止192.168.1.2的主机访问，其它都可以
-DocumentRoot "/Library/WebServer/Documents"
-<Directory "/Library/WebServer/Documents">
+# DocumentRoot "/Library/WebServer/Documents"
+# <Directory "/Library/WebServer/Documents">
+DocumentRoot "/Users/csy/workspace/www"
+<Directory "/Users/csy/workspace/www">
     # Options FollowSymLinks Multiviews
     Options Indexes FollowSymLinks Multiviews # 开启目录浏览
     MultiviewsMatch Any
@@ -110,8 +130,8 @@ DocumentRoot "/Library/WebServer/Documents"
 </IfModule>
 
 #
-# The following lines prevent .htaccess and .htpasswd files from being 
-# viewed by Web clients. 
+# The following lines prevent .htaccess and .htpasswd files from being
+# viewed by Web clients.
 # 防止 .htaccess 和 .htpasswd 文件被从Web上访问
 <FilesMatch "^\.([Hh][Tt]|[Dd][Ss]_[Ss])">
     Require all denied
@@ -159,15 +179,22 @@ LogLevel warn
 Include /private/etc/apache2/other/*.conf
 ```
 
+> ps：
+> LoadModule php7_module libexec/apache2/libphp7.so 需要取消注释
+
 配置完成后重启apache服务，打开浏览器输入localhost
 ``` shell
 sudo httpd -v # 检查配置文件是否正确
+sudo apachectl -v # 同上，检测apache版本
 sudo apachectl start # 启动 apache 服务
 sudo apachectl stop # 关闭 appache 服务
 sudo apachectl restart # 重启 apache 服务
 ```
 
-安装数据库
+
+## MySQL
+
+1. 安装数据库
 ``` shell
 brew install mysql
 ```
@@ -213,6 +240,9 @@ install_on_request: 63,446 (30 days), 173,599 (90 days), 781,056 (365 days)
 build_error: 0 (30 days)
 ```
 
+> ps:
+> OpenSSL 是一个安全套接字层密码库，囊括主要的密码算法、常用的密钥和证书封装管理功能及SSL协议，并提供丰富的应用程序供测试或其它目的使用。
+
 ``` shell
 mysql --help
 # 你可以看到一大段数据库帮助信息，这个时候你锁定一句
@@ -222,18 +252,141 @@ Default options are read from the following files in the given order:
 
 ```
 
-查看版本信息
-``` shell
+2. 查看版本信息
+``` bash
 mysql --version
 mysql  Ver 8.0.13 for osx10.14 on x86_64 (Homebrew)
 ```
 
+3. 启动 mysql
+``` bash
+mysql.server start
+
+Starting MySQL
+. SUCCESS!
+```
+
+退出 mysql
+``` bash
+mysql.server stop
+
+Shutting down MySQL
+.. SUCCESS!
+```
+
+4. mysql安装基本配置(设置root 以及初始化配置)
+``` shell
+mysql_secure_installation
+
+
+Securing the MySQL server deployment.
+
+Connecting to MySQL using a blank password.
+
+VALIDATE PASSWORD PLUGIN can be used to test passwords
+and improve security. It checks the strength of password
+and allows the users to set only those passwords which are
+secure enough. Would you like to setup VALIDATE PASSWORD plugin?
+// 提示是否设置密码
+Press y|Y for Yes, any other key for No: y
+// 提示选择密码强度等级
+There are three levels of password validation policy:
+
+LOW    Length >= 8
+MEDIUM Length >= 8, numeric, mixed case, and special characters
+STRONG Length >= 8, numeric, mixed case, special characters and dictionary                  file
+
+Please enter 0 = LOW, 1 = MEDIUM and 2 = STRONG: 1
+Please set the password for root here.
+// 按照所选的密码强度要求设定密码
+New password:
+
+Re-enter new password:
+
+// 提示密码强度50,不符合要求重新设置密码
+Estimated strength of the password: 50
+Do you wish to continue with the password provided?(Press y|Y for Yes, any other key for No) : y
+ ... Failed! Error: Your password does not satisfy the current policy requirements
+
+New password:
+
+Re-enter new password:
+// 提示密码强度100,符合要求继续进行
+Estimated strength of the password: 100
+Do you wish to continue with the password provided?(Press y|Y for Yes, any other key for No) : y
+By default, a MySQL installation has an anonymous user,
+allowing anyone to log into MySQL without having to have
+a user account created for them. This is intended only for
+testing, and to make the installation go a bit smoother.
+You should remove them before moving into a production
+environment.
+// 提示删除默认无密码用户
+Remove anonymous users? (Press y|Y for Yes, any other key for No) : y
+Success.
+
+
+Normally, root should only be allowed to connect from
+'localhost'. This ensures that someone cannot guess at
+the root password from the network.
+// 提示禁止远程root登录
+Disallow root login remotely? (Press y|Y for Yes, any other key for No) : no
+
+ ... skipping.
+By default, MySQL comes with a database named 'test' that
+anyone can access. This is also intended only for testing,
+and should be removed before moving into a production
+environment.
+
+// 提示删除默认自带的test数据库
+Remove test database and access to it? (Press y|Y for Yes, any other key for No) : y
+ - Dropping test database...
+Success.
+
+ - Removing privileges on test database...
+Success.
+
+Reloading the privilege tables will ensure that all changes
+made so far will take effect immediately.
+// 提示是否重新加载privilege tables
+Reload privilege tables now? (Press y|Y for Yes, any other key for No) : y
+Success.
+
+All done!
+```
+
+5. 测试登陆mysql
 利用安装MySQL时，给出的用户和密码登录服务，在终端输入如下命令
 ``` shell
-mysql -u root -pe
+mysql -u root -p
+
+mysql>
 ```
 
 退出命令
 ``` shell
 exit
 ```
+
+6. mysql 基本操作
+
+``` shell
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+...
+
+
+mysql> use mysql;
+Database changed
+mysql> show tables;
++---------------------------+
+| Tables_in_mysql           |
++---------------------------+
+...
+
+```
+
+> 附：在系统偏好设置里面并没有图标
+> 用`brew install packagename`是用来安装命令行工具的，一般不可能影响到图形界面。
+`brew cask install packagename`倒是有可能，
