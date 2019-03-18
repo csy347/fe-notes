@@ -17,4 +17,7 @@ brew install rapidjson
 brew install zsh
 
 brew install mysql
+
+# 只显示一层目录， 如： tree -Ld 1 /home/omc/ftl 
+brew install tree
 ```

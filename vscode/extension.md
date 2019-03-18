@@ -8,3 +8,6 @@
 - EditorConfig for VS Code // 保持缩进风格一致
 
 - leetcode // 刷题工具
+
+- Vetur
+- Vue 2 Snippets
