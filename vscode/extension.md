@@ -11,3 +11,5 @@
 
 - Vetur
 - Vue 2 Snippets
+
+- language-stylus
