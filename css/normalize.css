@@ -1,0 +1,389 @@
+/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
+
+/* Document
+   ========================================================================== */
+
+/**
+ * 1. Correct the line height in all browsers.
+ *    修正所有浏览器中的行高.
+ * 2. Prevent adjustments of font size after orientation changes in iOS.
+ *    在iOS的切换横竖屏时，防止字体大小的调整.
+ */
+
+html {
+  line-height: 1.15; /* 1 */
+  -webkit-text-size-adjust: 100%; /* 2 */
+}
+
+/* Sections
+   ========================================================================== */
+
+/**
+ * Remove the margin in all browsers.
+ * 删除所有浏览器的margin值
+ */
+
+body {
+  margin: 0;
+}
+
+/**
+ * Render the `main` element consistently in IE.
+ * 解决 main 元素 在IE浏览器
+ */
+
+main {
+  display: block;
+}
+
+/**
+ * Correct the font size and margin on `h1` elements within `section` and `article` contexts in Chrome, Firefox, and Safari.
+ * 修正h1元素的font-size和margin值(针对section和article内容中出现的问题)
+ */
+
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+/* Grouping content / 内容部分
+   ========================================================================== */
+
+/**
+ * 1. Add the correct box sizing in Firefox.
+ *    修正火狐浏览器的box-sizing
+ * 2. Show the overflow in Edge and IE.
+ *    修正 IE/Edge 浏览器 overflow 问题.
+ */
+
+hr {
+  box-sizing: content-box; /* 1 */
+  height: 0; /* 1 */
+  overflow: visible; /* 2 */
+}
+
+/**
+ * 1. Correct the inheritance and scaling of font size in all browsers.
+ *    在所有浏览器中纠正字体大小的继承和扩展。
+ * 2. Correct the odd `em` font sizing in all browsers.
+ *    在所有浏览器中纠正奇数的字体大小。
+ */
+
+pre {
+  font-family: monospace, monospace; /* 1 */
+  font-size: 1em; /* 2 */
+}
+
+/* Text-level semantics / 文本级别的语义
+   ========================================================================== */
+
+/**
+ * Remove the gray background on active links in IE 10.
+ * 删除IE 10中链接 在 active 状态的灰色背景。
+ */
+
+a {
+  background-color: transparent;
+}
+
+/**
+ * 1. Remove the bottom border in Chrome 57-
+ *    移除低于57版本的 Chrome 浏览器 的border-bottom
+ * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
+ *    在Chrome、Edge、IE、Opera和Safari中添加正确的text-decoration。
+ */
+
+abbr[title] {
+  border-bottom: none; /* 1 */
+  text-decoration: underline; /* 2 */
+  text-decoration: underline dotted; /* 2 */
+}
+
+/**
+ * Add the correct font weight in Chrome, Edge, and Safari.
+ * 在Chrome、Edge和Safari中添加正确的font-weight
+ */
+
+b,
+strong {
+  font-weight: bolder;
+}
+
+/**
+ * 1. Correct the inheritance and scaling of font size in all browsers.
+ *    在所有浏览器中纠正字体大小的继承和扩展。
+ * 2. Correct the odd `em` font sizing in all browsers.
+ *    在所有浏览器中纠正奇数的字体大小。
+ */
+
+code,
+kbd,
+samp {
+  font-family: monospace, monospace; /* 1 */
+  font-size: 1em; /* 2 */
+}
+
+/**
+ * Add the correct font size in all browsers.
+ * 统一所有浏览器 small 字体大小
+ */
+
+small {
+  font-size: 80%;
+}
+
+/**
+ * Prevent `sub` and `sup` elements from affecting the line height in all browsers.
+ * 防止“sub”和“sup”元素影响所有浏览器的线高度。
+ */
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+/* Embedded content / 嵌入内容
+   ========================================================================== */
+
+/**
+ * Remove the border on images inside links in IE 10.
+ * 删除IE 10中链接内图像上的边框
+ */
+
+img {
+  border-style: none;
+}
+
+/* Forms
+   ========================================================================== */
+
+/**
+ * 1. Change the font styles in all browsers.
+ *    更改所有浏览器中的字体样式
+ * 2. Remove the margin in Firefox and Safari.
+ *    删除Firefox和Safari中的边距
+ */
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit; /* 1 */
+  font-size: 100%; /* 1 */
+  line-height: 1.15; /* 1 */
+  margin: 0; /* 2 */
+}
+
+/**
+ * Show the overflow in IE.
+ * 1. Show the overflow in Edge.
+ *    修正 IE 中 overflow 问题
+ */
+
+button,
+input { /* 1 */
+  overflow: visible;
+}
+
+/**
+ * Remove the inheritance of text transform in Edge, Firefox, and IE.
+ * 删除Edge，Firefox和IE中的文本变换的继承
+ * 1. Remove the inheritance of text transform in Firefox.
+ */
+
+button,
+select { /* 1 */
+  text-transform: none;
+}
+
+/**
+ * Correct the inability to style clickable types in iOS and Safari.
+ * 更正了iOS和Safari中无法创建可点击类型的样式
+ */
+
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+  -webkit-appearance: button;
+}
+
+/**
+ * Remove the inner border and padding in Firefox.
+ * 删除Firefox中的内边框和内边距
+ */
+
+button::-moz-focus-inner,
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+
+/**
+ * Restore the focus styles unset by the previous rule.
+ * 恢复由上一个规则未设置的焦点样式
+ */
+
+button:-moz-focusring,
+[type="button"]:-moz-focusring,
+[type="reset"]:-moz-focusring,
+[type="submit"]:-moz-focusring {
+  outline: 1px dotted ButtonText;
+}
+
+/**
+ * Correct the padding in Firefox.
+ * 更正Firefox的内边距
+ */
+
+fieldset {
+  padding: 0.35em 0.75em 0.625em;
+}
+
+/**
+ * 1. Correct the text wrapping in Edge and IE.
+ *    更正在Edge和IE中包装的文本
+ * 2. Correct the color inheritance from `fieldset` elements in IE.
+ *    更正IE中的“fieldset”元素的颜色继承
+ * 3. Remove the padding so developers are not caught out when they zero out `fieldset` elements in all browsers.
+ *    删除填充，以便开发人员在所有浏览器中清除`fieldset`元素时不会出现
+ */
+
+legend {
+  box-sizing: border-box; /* 1 */
+  color: inherit; /* 2 */
+  display: table; /* 1 */
+  max-width: 100%; /* 1 */
+  padding: 0; /* 3 */
+  white-space: normal; /* 1 */
+}
+
+/**
+ * Add the correct vertical alignment in Chrome, Firefox, and Opera.
+ * 在Chrome，Firefox和Opera中添加正确的垂直对齐方式
+ */
+
+progress {
+  vertical-align: baseline;
+}
+
+/**
+ * Remove the default vertical scrollbar in IE 10+.
+ * 删除IE10+中的默认垂直滚动条
+ */
+
+textarea {
+  overflow: auto;
+}
+
+/**
+ * 1. Add the correct box sizing in IE 10.
+ *    在IE 10-中添加正确的框大小
+ * 2. Remove the padding in IE 10.
+ *    删除IE 10中的填充
+ */
+
+[type="checkbox"],
+[type="radio"] {
+  box-sizing: border-box; /* 1 */
+  padding: 0; /* 2 */
+}
+
+/**
+ * Correct the cursor style of increment and decrement buttons in Chrome.
+ * 更正Chrome中的增量和减少按钮的游标样式
+ */
+
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
+  height: auto;
+}
+
+/**
+ * 1. Correct the odd appearance in Chrome and Safari.
+ *    更正Chrome和Safari中的莫明奇妙的外观
+ * 2. Correct the outline style in Safari.
+ *    更正Safari中的样式
+ */
+
+[type="search"] {
+  -webkit-appearance: textfield; /* 1 */
+  outline-offset: -2px; /* 2 */
+}
+
+/**
+ * Remove the inner padding in Chrome and Safari on macOS.
+ * 在Mac操作系统上删除Chrome和Safari中的内部填充
+ */
+
+[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/**
+ * 1. Correct the inability to style clickable types in iOS and Safari.
+ *    更正了iOS和Safari中无法创建可点击类型的样式
+ * 2. Change font properties to `inherit` in Safari.
+ *    在Safari中将字体属性更改为“inherit”
+ */
+
+::-webkit-file-upload-button {
+  -webkit-appearance: button; /* 1 */
+  font: inherit; /* 2 */
+}
+
+/* Interactive / 交互
+   ========================================================================== */
+
+/*
+ * Add the correct display in Edge, IE 10+, and Firefox.
+ * 在Edge，IE10+和Firefox中添加正确的显示
+ */
+
+details {
+  display: block;
+}
+
+/*
+ * Add the correct display in all browsers.
+ * 在所有浏览器中添加正确的显示
+ */
+
+summary {
+  display: list-item;
+}
+
+/* Misc / 杂项
+   ========================================================================== */
+
+/**
+ * Add the correct display in IE 10+.
+ * 在IE10+中添加正确的显示
+ */
+
+template {
+  display: none;
+}
+
+/**
+ * Add the correct display in IE 10.
+ * 在IE 10中添加正确的显示
+ */
+
+[hidden] {
+  display: none;
+}
