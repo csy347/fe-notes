@@ -1,0 +1,139 @@
+@charset "utf-8";
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+html {
+    background-color: #fff;
+    color: #000;
+    font-size: 100px;
+    }
+
+body {
+    font-size: 12px;
+    line-height: 1.5;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+table{
+    border-collapse:collapse;
+    border-spacing:0;
+}
+
+:focus {
+  outline: none;
+}
+
+/* 一些针对处理
+====================================*/
+body {
+    -webkit-tap-highlight-color: transparent; /* 修复iOS中链接灰色背景问题 */
+    -webkit-text-size-adjust: 100%; /* 在iOS的切换横竖屏时，防止字体大小的调整 */
+    -webkit-font-smoothing: antialiased; /* 字体抗锯齿，比较清晰 */
+    -moz-osx-font-smoothing: grayscale; /* 字体抗锯齿，比较清晰 */
+}
+
+img,a {
+    -webkit-touch-callout: none; /* 禁用长按页面时的弹出菜单(iOS下有效) */
+}
+
+/* 表单 */
+
+/**
+* 1. 更正在Edge和IE中包装的文本
+* 2. 更正IE中的“fieldset”元素的颜色继承
+* 3. 删除填充，以便开发人员在所有浏览器中清除`fieldset`元素时不会出现
+*/
+
+legend {
+  box-sizing: border-box; /* 1 */
+  color: inherit; /* 2 */
+  display: table; /* 1 */
+  max-width: 100%; /* 1 */
+  padding: 0; /* 3 */
+  white-space: normal; /* 1 */
+}
+
+textarea {
+  overflow: auto; /* 删除IE10+中的默认垂直滚动条 */
+}
+
+button,
+input {
+  overflow: visible; /* 修正 IE 中 overflow 问题 */
+}
+
+button,
+select { /* 删除Edge，Firefox和IE中的文本变换的继承 */
+  text-transform: none;
+}
+
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+  -webkit-appearance: button; /* 修正iOS和Safari中无法创建可点击类型的样式 */
+}
+
+button::-moz-focus-inner,
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner { /* 删除Firefox中的内边框和内边距 */
+  border-style: none;
+  padding: 0;
+}
+
+button:-moz-focusring,
+[type="button"]:-moz-focusring,
+[type="reset"]:-moz-focusring,
+[type="submit"]:-moz-focusring { /* 恢复由上一个规则未设置的焦点样式 */
+  outline: 1px dotted ButtonText;
+}
+
+[type="checkbox"],
+[type="radio"] {
+  box-sizing: border-box; /* 在IE 10-中添加正确的框大小 */
+  padding: 0; /* 删除IE 10中的填充 */
+}
+
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
+  height: auto; /* 更正Chrome中的增量和减少按钮的游标样式 */
+}
+
+[type="search"] {
+  -webkit-appearance: textfield; /* 更正Chrome和Safari中的莫明奇妙的外观 */
+  outline-offset: -2px; /* 更正Safari中的样式 */
+}
+
+
+[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none; /* 在Mac操作系统上删除Chrome和Safari中的内部填充 */
+}
+
+::-webkit-file-upload-button {
+  -webkit-appearance: button; /* 更正了iOS和Safari中无法创建可点击类型的样式 */
+  font: inherit; /* 在Safari中将字体属性更改为“inherit” */
+}
