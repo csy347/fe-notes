@@ -13,33 +13,33 @@ article, aside, canvas, details, embed,
 figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    font: inherit;
-    vertical-align: baseline;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
 }
 
 html {
-    background-color: #fff;
-    color: #000;
-    font-size: 100px;
-    }
+  background-color: #fff;
+  color: #000;
+  font-size: 100px;
+}
 
 body {
-    font-size: 12px;
-    line-height: 1.5;
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  line-height: 1.5;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 ol, ul {
-    list-style: none;
+  list-style: none;
 }
 
 table{
-    border-collapse:collapse;
-    border-spacing:0;
+  border-collapse:collapse;
+  border-spacing:0;
 }
 
 :focus {
@@ -49,14 +49,14 @@ table{
 /* 一些针对处理
 ====================================*/
 body {
-    -webkit-tap-highlight-color: transparent; /* 修复iOS中链接灰色背景问题 */
-    -webkit-text-size-adjust: 100%; /* 在iOS的切换横竖屏时，防止字体大小的调整 */
-    -webkit-font-smoothing: antialiased; /* 字体抗锯齿，比较清晰 */
-    -moz-osx-font-smoothing: grayscale; /* 字体抗锯齿，比较清晰 */
+  -webkit-tap-highlight-color: transparent; /* 修复iOS中链接灰色背景问题 */
+  -webkit-text-size-adjust: 100%; /* 在iOS的切换横竖屏时，防止字体大小的调整 */
+  -webkit-font-smoothing: antialiased; /* 字体抗锯齿，比较清晰 */
+  -moz-osx-font-smoothing: grayscale; /* 字体抗锯齿，比较清晰 */
 }
 
 img,a {
-    -webkit-touch-callout: none; /* 禁用长按页面时的弹出菜单(iOS下有效) */
+  -webkit-touch-callout: none; /* 禁用长按页面时的弹出菜单(iOS下有效) */
 }
 
 /* 表单 */
