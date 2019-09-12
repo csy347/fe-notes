@@ -1,0 +1,22 @@
+
+``` js
+
+/* ::-webkit-scrollbar */
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  border: 2px solid white;
+  background-color: rgba(0, 0, 0, .3);
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, .8);
+}
+::-webkit-scrollbar-thumb:window-inactive {
+  background-color: rgba(0, 0, 0, .2);
+}
+
+```
