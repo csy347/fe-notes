@@ -144,10 +144,16 @@
     "files.encoding": "utf8",
 
     // 默认行尾字符。
-    "files.eol": "\r\n",
+	//  - \n: LF
+	//  - \r\n: CRLF
+	//  - auto: 使用具体操作系统规定的行末字符。
+    "files.eol": "\n",
+
+    // 启用后，保存文件时在文件末尾插入一个最终新行
+    "files.insertFinalNewline": true,
 
     // 启用后，将在保存文件时剪裁尾随空格。
-    "files.trimTrailingWhitespace": false,
+    "files.trimTrailingWhitespace": true,
 
     // 控制已更新文件的自动保存。接受的值:“off”、“afterDelay”、“onFocusChange”。如果设置为“afterDelay”，则可在 "files.autoSaveDelay" 中配置延迟。
     "files.autoSave": "onFocusChange",
