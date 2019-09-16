@@ -1,4 +1,11 @@
-// 通过将设置放入设置文件中来覆盖设置。
+# setting.json
+
+> 在编译器左上角文件的首选项中找到设置，搜索找到setting.json文件进行配置。
+> 使用快捷键 Ctrl+Shift+P ，然后搜索setting
+
+> 通过将设置放入设置文件中来覆盖设置。
+
+``` json
 {
 
     //-------- 编辑器配置 --------
@@ -84,8 +91,8 @@
     // 控制光标是否应隐藏在概述标尺中。
     "editor.hideCursorInOverviewRuler": false,
 
-    // 控制编辑器是否应呈现空白字符
-    "editor.renderWhitespace": false,
+    // 控制编辑器是否应呈现空白字符 boundary 行首显示空格点点， all 字间也会显示 空格点
+    "editor.renderWhitespace": "all",
 
     // 控制编辑器是否显示支持它的模式的参考信息
     "editor.referenceInfos": true,
@@ -143,7 +150,7 @@
     "files.trimTrailingWhitespace": false,
 
     // 控制已更新文件的自动保存。接受的值:“off”、“afterDelay”、“onFocusChange”。如果设置为“afterDelay”，则可在 "files.autoSaveDelay" 中配置延迟。
-    "files.autoSave": "off",
+    "files.autoSave": "onFocusChange",
 
     // 控制延迟(以秒为单位)，在该延迟后将自动保存更新后的文件。仅在 "files.autoSave" 设置为“afterDelay”时适用。
     "files.autoSaveDelay": 1000,
@@ -557,3 +564,4 @@
     "editor.wordBasedSuggestions": true
 
 }
+```
