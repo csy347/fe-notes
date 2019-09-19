@@ -31,5 +31,3 @@ JavaScript的核心语法: 基本语法和标准库
 
 ## 为什么学习 JavaScript?
 
-
-
