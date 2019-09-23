@@ -65,5 +65,4 @@
     // Show folders in the side bar in bold
     "bold_folder_labels": true,
 }
-
 ```
