@@ -2,6 +2,12 @@
 
 ## 动画和锚位置
 
+    data-aos="fade-up"
+    data-aos-offset="200"
+    data-aos-duration="600"
+    data-aos-easing="ease-in-out"
+    data-aos-delay="50"
+    data-aos-once="false"
 
 data-aos="fade-up"
 
@@ -94,6 +100,8 @@ data-aos-once="false"
     zoom-out-right
 
 ## 参考
+
+https://github.com/michalsnik/aos
 
 http://www.jq22.com/jquery-info8150
 http://www.a5xiazai.com/demo/code_pop/19/1858/
