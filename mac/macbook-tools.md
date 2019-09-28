@@ -13,6 +13,10 @@
 
 注：这个需要提前安装有xcode(需要Command Line Tools)
 
+```bash
+xcode-select --install
+```
+
 
 ## 安装 iTerm2
 
