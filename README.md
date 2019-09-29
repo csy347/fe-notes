@@ -1,5 +1,7 @@
 # FE-notes
 
+## 全栈工程师
+
 - CSS3
 - HTML5
 - JavaScript 基础
@@ -13,3 +15,20 @@
 - Node & 模块化
 - Vue
 - React
+
+----------------------------------
+
+## 工具知识汇集
+
+- chrome
+- firefox
+- git
+- iterm
+- mac
+- linux
+- markdown
+- npm
+- sublime
+- vscode
+- typora
+- homebrew
