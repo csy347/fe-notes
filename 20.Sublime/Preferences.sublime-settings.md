@@ -5,7 +5,7 @@
 {
     // tab键缩进4个字符
     // The number of spaces a tab is considered equal to
-    "tab_size": 4,
+    "tab_size": 2,
 
     // tab键转换为空格键
     // Set to true to insert spaces when tab is pressed

@@ -32,7 +32,7 @@
     "editor.wordSeparators": "`~!@#$%^&*()-=+[{]}\\|;:'\",.<>/?",
 
     // 一个制表符等于的空格数。
-    "editor.tabSize": 4,
+    "editor.tabSize": 2,
 
     // 按 "Tab" 时插入空格。
     "editor.insertSpaces": true,

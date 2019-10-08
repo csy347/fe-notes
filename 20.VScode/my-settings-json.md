@@ -14,7 +14,7 @@
     "editor.fontFamily": "Consolas, 'Courier New', monospace",
 
     // 一个制表符等于的空格数。
-    "editor.tabSize": 4,
+    "editor.tabSize": 2,
 
     // 控制编辑器在空白符上显示符号的方式
     "editor.renderWhitespace": "all",
