@@ -17,9 +17,9 @@
 
 ## 辅助 & 效率
 
-- 测试：单元/整合/功能
 - ESLint
 - Git
+- Jest：单元/整合/功能测试
 - Markdown
 - mongoDB
 - NPM
