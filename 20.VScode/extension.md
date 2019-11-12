@@ -13,3 +13,5 @@
 - Vue 2 Snippets
 
 - language-stylus
+
+- GitLens 仓库管理插件
