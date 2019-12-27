@@ -3,6 +3,10 @@
 
 ``` json
 {
+    // 默认忽略vim命令格式(Vintage插件是自带的)
+    "ignored_packages": ["Vintage"],
+
+
     // tab键缩进4个字符
     // The number of spaces a tab is considered equal to
     "tab_size": 2,
@@ -64,5 +68,9 @@
     // 侧边栏的文件夹加粗，区别于文件
     // Show folders in the side bar in bold
     "bold_folder_labels": true,
+
+    // 奇怪中文显示问题
+    "dpi_scale": 1.0,
+    "font_options": ["gdi"]
 }
 ```
